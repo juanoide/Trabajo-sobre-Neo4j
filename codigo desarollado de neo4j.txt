@@ -1,0 +1,90 @@
+//--Jugadores--
+
+//Ubicuos
+
+CREATE (Cortes:Player { Lastname : 'Cortes', FirstName: 'Juan', Countrycode: 'ES', Rank: '12k', Gor: 906 })
+
+CREATE (Beret:Player { Lastname : 'Beret', FirstName: 'Pablo', Countrycode: 'ES', Rank: '11k', Gor: 920 })
+
+CREATE (Fernandez:Player { Lastname : 'Fernandez-Villares', FirstName: 'Javier', Countrycode: 'ES', Rank: '3d', Gor: 2270 })
+
+CREATE (Rosales:Player { Lastname : 'Rosales', FirstName: 'Casilda', Countrycode: 'ES', Rank: '16k', Gor: 440 })
+
+
+//Agocas:
+
+
+CREATE (Martin:Player { Lastname : 'Martin', FirstName: 'Antonio-Eloy', Countrycode: 'ES', Rank: '5k', Gor: 1570})
+
+CREATE (Ligero:Player { Lastname : 'Ligero', FirstName: 'Juan-Jesus', Countrycode: 'ES', Rank: '5k', Gor: 1639})
+
+
+//--Clubs--
+
+CREATE (GoCadiz:Club { name : 'AGOCA', Countrycode: 'ES', City: 'Cadiz', play_place: 'Casa de la juventud de Cadiz'})
+
+CREATE (Ubicuo:Club { name : 'UBICUO', Countrycode: 'ES', City: 'Sevilla', play_place: 'Cafe de la prensa'})
+
+
+//--Torneos--
+
+CREATE (T140725A:Tournament { Class : 'C', Date: '2014-07-25', Description: 'VII Torneo de Go de Cadiz', Country: 'ES', City: 'Cadiz', Rounds: '4'})
+
+CREATE (T101030K:Tournament { Class : 'A', Date: '2010-10-30', Description: 'spanish open 2010', Country: 'ES', City: 'Sevilla', Rounds: '6'})
+
+CREATE (T110326F:Tournament { Class : 'A', Date: '2011-03-26', Description: 'E.P.S. Ubicuo-kiin Club Tournament', Country: 'ES', City: 'Sevilla', Rounds: '5'})
+
+
+//--Relationship--
+
+CREATE (Cortes)-[r:PARTICIPATE{GoR_Bef_Af:"873-->906",placement:"4/7", wins: "2", loses: "1", Jigo: "0"}]->(T140725A) 
+
+
+CREATE (Martin)-[r2:PARTICIPATE{GoR_Bef_Af:"1530-->1521",placement:"5/7", wins: "4", loses: "2", Jigo: "0"}]->(T140725A) 
+
+CREATE (Cortes)-[r3:PARTICIPATE{GoR_Bef_Af:"826-->810",placement:"40/55", wins: "3", loses: "3", Jigo: "0"}]->(T101030K) 
+
+CREATE (Ligero)-[r4:PARTICIPATE{GoR_Bef_Af:"1763-->1799",placement:"16/55", wins: "3", loses: "3", Jigo: "0"}]->(T101030K) 
+
+CREATE (Rosales)-[r5:PARTICIPATE{GoR_Bef_Af:"600-->500",placement:"47/55", wins: "2", loses: "4", Jigo: "0"}]->(T101030K) 
+
+CREATE (Beret)-[r6:PARTICIPATE{GoR_Bef_Af:"895-->979",placement:"33/43", wins: "3", loses: "2", Jigo: "0"}]->(T110326F) 
+
+CREATE (Cortes)-[r7:PARTICIPATE{GoR_Bef_Af:"810-->856",placement:"35/43", wins: "3", loses: "2", Jigo: "0"}]->(T110326F) 
+
+CREATE (Rosales)-[r8:PARTICIPATE{GoR_Bef_Af:"500-->400",placement:"39/43", wins: "1", loses: "4", Jigo: "0"}]->(T110326F) 
+
+CREATE (Fernandez)-[r9:PARTICIPATE{GoR_Bef_Af:"2291-->2270",placement:"7/43", wins: "2", loses: "3", Jigo: "0"}]->(T110326F) 
+
+CREATE (Ligero)-[r10:PARTICIPATE{GoR_Bef_Af:"1799-->1768",placement:"12/43", wins: "1", loses: "4", Jigo: "0"}]->(T110326F) 
+
+CREATE (Martin)-[r112:BELONG_TO{Position:"President"}]->(GoCadiz) 
+
+CREATE (Ligero)-[r122:BELONG_TO{Position:"Member"}]->(GoCadiz) 
+
+CREATE (Beret)-[r132:BELONG_TO{Position:"President"}]->(Ubicuo) 
+
+CREATE (Fernandez)-[r142:BELONG_TO{Position:"Member"}]->(Ubicuo) 
+
+CREATE (Rosales)-[r15:BELONG_TO{Position:"Member"}]->(Ubicuo) 
+
+CREATE (Cortes)-[r162:BELONG_TO{Position:"Member"}]->(Ubicuo) 
+
+CREATE (GoCadiz)-[r173:HAVE_TO{Since:"2008"}]->(Martin) 
+
+CREATE (GoCadiz)-[r183:HAVE_TO{Since:"2008"}]->(Ligero) 
+
+CREATE (Ubicuo)-[r193:HAVE_TO{Since:"2005"}]->(Beret) 
+
+CREATE (Ubicuo)-[r23:HAVE_TO{Since:"2009"}]->(Cortes) 
+
+CREATE (Ubicuo)-[r223:HAVE_TO{Since:"2006"}]->(Fernandez) 
+
+CREATE (Ubicuo)-[r213:HAVE_TO{Since:"2007"}]->(Rosales) 
+
+
+CREATE (Ubicuo)<-[r244:ARRANGE{}]-(T110326F) 
+
+CREATE (Ubicuo)<-[r254:ARRANGE{}]-(T101030K) 
+
+CREATE (GoCadiz)<-[r264:ARRANGE{}]-(T140725A) 
